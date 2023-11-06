@@ -1,0 +1,24 @@
+while callling api we need to use axio in axios we send the data from app.js data and call in the axios
+
+to send the data we need the post axios.post in which the first argument is api url and second argument is post api body where we pass the data
+ api url is the url whcih come from backend and backend is running on Post 8000 also we need the end point in api url so we need the string concation using `` and dollor sign sinc axios is asycrnous function so it will return promise asyn await use 
+
+
+ // handling backend
+ to handle the routes of frontend we make routes.js
+ routing is done by express whcih have function Router 
+ router.post take thre 3 argument endpoint, middlewers and callback function in callback function we write what to done when it hit by endpoints
+
+in callback function uploadImage it take two argument request and response all ther api request from frontend to backend is request  while the api 
+request from backend to frontend is done by response 
+
+
+// --->>>>> connecting backend with mongoDb
+make db.js istall mongoose  in try cathh block we connect using mongoose.connect which argument url and an object which we pass otption
+
+after connecting with mongoDb we now create middlewers for that we have make a new file upload js in new folder utils and export it in route js file and in image-controller file get the file name and path of file which you send fron frontend
+
+
+//------------->>>>>>>>>>>  validation 
+suppose u did not send the file from frontend that is why we have to handle it  making file js in model folder to validation that the frontend reqy
+ is correct or not we  make a schemna for it 
