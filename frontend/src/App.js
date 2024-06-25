@@ -32,8 +32,8 @@ function App() {
 
   return (
     <div className="App">
-      <div className="wrapper">
         <h1>File sharing application</h1>
+      <div className="wrapper">
         <p>Upload and shared the link</p>
 
         <button onClick={() => onUploadClick()}>Upload</button>
