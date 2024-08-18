@@ -1,51 +1,24 @@
-import logo from './logo.svg';
-import { useEffect, useRef, useState } from 'react'
-import './App.css';
-import {uploadFile} from './services/api'
-
-function App() {
-
-  const [file, setFile] = useState("");
-  const [result, setResult] = useState("")
-
-  const fileRef = useRef();
-
-  const onUploadClick = () => {
-    fileRef.current.click();
-  }
-
-  useEffect(() =>{
-    const getImage = async () =>{
- 
-      if(file){
-        const data = new FormData()
-        data.append("name", file.name)
-        data.append("file", file)
-
-        let response = await uploadFile(data)
-        setResult(response.path);
-      }
-    }
-    getImage();
-    }, [file])
-  console.log(file)
-
+import React from 'react'
+import {BrowserRouter, Route, Routes} from 'react-router-dom'
+import Navbar from './component/Navbar'
+import Howitwork from './component/Howitwork'
+import Home from './component/Home'
+import Footer from './component/Footer'
+import {Toaster} from 'react-hot-toast'
+const App = () => {
   return (
-    <div className="App">
-        <h1>File sharing application</h1>
-      <div className="wrapper">
-        <p>Upload and shared the link</p>
-
-        <button onClick={() => onUploadClick()}>Upload</button>
-        <input type="file"
-          ref={fileRef}
-          style={{ "display": "none" }}
-          onChange={(e) => setFile(e.target.files[0])}
-        />
-      </div>
-      <a href={result}>{result}</a>
+    <div>
+      <BrowserRouter>
+        <Navbar/>
+          <Routes>
+            <Route path='/' element = {<Home/>}/>
+            <Route path='/howitwork' element = {<Howitwork/>} />
+          </Routes>
+          <Footer/>
+      </BrowserRouter>
+     <Toaster/>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

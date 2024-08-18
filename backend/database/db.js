@@ -7,7 +7,7 @@ const  DBConnetion = async() =>{
         await mongoose.connect(MONGO_URL)        
         console.log("database is successfully connected")
     } catch (error) {
-        console.log(error)
+        console.log(error )
     }
 }
 export default DBConnetion
