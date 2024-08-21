@@ -4,7 +4,7 @@ import cors from 'cors'
 import DBConnetion from './database/db.js'
  const app = express()
  app.use(cors({
-    origin: 'http://localhost:3000', 
+    origin:  'https://file-sharing-application-2p34.vercel.app/', 
     methods: ['GET', 'POST', 'PUT', 'DELETE'], 
     credentials: true, 
   }));
