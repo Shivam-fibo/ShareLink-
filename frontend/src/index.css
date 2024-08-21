@@ -13,7 +13,6 @@ body{
 }
 .nav {
   display: flex;
-  height: 15vh;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
@@ -66,6 +65,7 @@ body{
   }
 }
 .container {
+
   display: flex;
   justify-content: space-between;
   align-items: center;
