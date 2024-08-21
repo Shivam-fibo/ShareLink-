@@ -9,9 +9,11 @@ body{
   font-family: "Love Ya Like A Sister", cursive;
   font-weight: 400;
   font-style: normal;
+  color:darkseagreen
 }
 .nav {
   display: flex;
+  height: 15vh;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
@@ -63,101 +65,145 @@ body{
     margin: 10px 0;
   }
 }
-
-.App {
-  text-align: center;
-}
-
 .container {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   padding: 20px;
 }
+
 .App {
   flex: 1;
-  text-align: left;
-}
-.share {
-  flex: 0 1 200px;
-  text-align: right;
+  max-width: 600px;
 }
 
-img {
+h2 {
+  font-size: 2rem;
+  color: #333;
+}
+
+p {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #21e909;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1bc107;
+}
+
+.result {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.resultUrl a {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.resultUrl a:hover {
+  text-decoration: underline;
+}
+
+.share img {
   max-width: 100%;
   height: auto;
   border-radius: 25%;
-
-}
-img:hover{
-  animation: ease-in-out;
-
 }
 
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
     align-items: center;
+    padding: 10px;
   }
 
-  .share {
-    margin-top: 20px;
+  .App {
+    max-width: 100%;
     text-align: center;
   }
+
+  button {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .result {
+    flex-direction: column;
+  }
+
+  .resultUrl {
+    margin-bottom: 10px;
+  }
 }
 
-h1 {
-  font-size: 24px;
-  margin-bottom: 10px;
-  color: #fff;
-}
 
-p {
-  font-size: 16px;
-  color: #fff;
+
+
+
+.htw_container {
+  text-align: center;
+  padding: 20px;
+  background-color: #21e909;
+  border-radius: 10px;
   margin-bottom: 20px;
 }
 
-button {
+.htw_container h2 {
+  font-size: 2rem;
+  color: #333;
+}
+
+.htw_container p {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.work_process, .next_step {
   background-color: #21e909;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-button:hover {
-  background-color: #0056b3;
-  transform: translateY(-2px);
+.work_process h3, .next_step h3 {
+  font-size: 1.5rem;
+  color: #21e909;
+  margin-bottom: 10px;
 }
 
-button:active {
-  background-color: #004494;
-  transform: translateY(1px);
+.work_process p, .next_step p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
 }
 
-a {
-  display: inline-block;
-  margin-top: 20px;
-  font-size: 14px;
-  color: #007bff;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
+@media (max-width: 768px) {
+  .htw_container, .work_process, .next_step {
+    padding: 15px;
+  }
 
-a:hover {
-  color: #0056b3;
-}
+  .htw_container h2 {
+    font-size: 1.8rem;
+  }
 
-input[type="file"] {
-  display: none;
-}
+  .work_process h3, .next_step h3 {
+    font-size: 1.4rem;
+  }
 
-.resultUrl{
-  background-color: rgba(70, 68, 68, 0.48);
-  padding: 5px;
-  border-radius: 10%;
+  .work_process p, .next_step p {
+    font-size: 0.95rem;
+  }
 }

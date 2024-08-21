@@ -9,6 +9,7 @@ const Navbar = () => {
       </div>
       <div className="info">
         <ul>
+          <li> <Link to={"/"}>Home </Link> </li>
         <li> <Link to={"/howitwork"}> How it work</Link> </li>
             <li><Link to={"https://github.com/Shivam-fibo/ShareLink-"} target='_blank'>Github</Link></li>
             <li><Link to={"https://www.linkedin.com/in/shivamgupta6418/"} target='_blank'> Connect with me!</Link></li>

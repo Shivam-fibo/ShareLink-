@@ -41,7 +41,10 @@ const Home = () => {
     <div className="container">
 
     <div className="App">
-        <h1>File sharing application</h1>
+     
+
+        <h2>ShareLink</h2>
+        <p>File sharing application</p>
       
 
         <button onClick={() => onUploadClick()}>Upload</button>
@@ -53,7 +56,7 @@ const Home = () => {
 
 
   {result && (
-              <div className="result">
+    <div className="result">
                 <span className="resultUrl">
 
                 <a href={result}  target="_blank" rel="noopener noreferrer">{result}</a>
@@ -65,8 +68,8 @@ const Home = () => {
     <div className="share">
       <img src="/hero.jpg" alt="" />
     </div>
+   
     </div>
-
     <Wave fill='#21e909'
         paused={false}
         options={{
@@ -76,9 +79,10 @@ const Home = () => {
           points: 10
         }}
         />
-    
+ 
         </>
   )
 }   
 
+       
 export default Home
