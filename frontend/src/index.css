@@ -104,6 +104,8 @@ button:hover {
   margin-top: 20px;
   display: flex;
   align-items: center;
+  
+
 }
 
 .resultUrl a {
@@ -117,6 +119,7 @@ button:hover {
 }
 
 .share img {
+  margin-top: 25px;
   max-width: 100%;
   height: auto;
   border-radius: 25%;
@@ -141,7 +144,6 @@ button:hover {
 
   .result {
     flex-direction: column;
-    padding-bottom: 25px;
   }
 
   .resultUrl {
