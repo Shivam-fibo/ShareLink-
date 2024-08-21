@@ -141,6 +141,7 @@ button:hover {
 
   .result {
     flex-direction: column;
+    padding-bottom: 25px;
   }
 
   .resultUrl {
