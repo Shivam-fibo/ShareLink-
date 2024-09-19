@@ -5,7 +5,7 @@ export  const uploadImage = async(request, response) =>{
    const fileObj = {
     path : request.file.path,
     name : request.file.originalname
-   }    
+   }        
         try {   
             const  file = await File.create(fileObj)
             console.log(file)

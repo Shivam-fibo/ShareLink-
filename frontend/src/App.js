@@ -1,24 +1,51 @@
-import React from 'react'
-import {BrowserRouter, Route, Routes} from 'react-router-dom'
-import Navbar from './component/Navbar'
-import Howitwork from './component/Howitwork'
-import Home from './component/Home'
-import Footer from './component/Footer'
-import {Toaster} from 'react-hot-toast'
+import React, { useContext, useEffect } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Navbar from './component/Navbar';
+import Home from './component/Home';
+import Footer from './component/Footer';
+import Login from './authentication/Login';
+import Register from './authentication/Register';
+import { Toaster } from 'react-hot-toast';
+import AuthContext from './context/AuthContext';
+
+import axios from 'axios'; 
+
 const App = () => {
+  const { isAuthorized, setIsAuthorized, setUser } = useContext(AuthContext);  
+
+  useEffect(() => {
+    const fetchUser = async () => {
+    
+      try {
+        const response = await axios.get(
+          "http://localhost:8000/getuser",
+          {
+            withCredentials: true,
+          }
+        );
+        setUser(response.data.user);
+        setIsAuthorized(true);
+      } catch (error) {
+        setIsAuthorized(false);
+      }
+    };
+    fetchUser();
+  }, [isAuthorized, setIsAuthorized, setUser]);
+
   return (
     <div>
       <BrowserRouter>
-        <Navbar/>
-          <Routes>
-            <Route path='/' element = {<Home/>}/>
-            <Route path='/howitwork' element = {<Howitwork/>} />
-          </Routes>
-          <Footer/>
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+        </Routes>
+        <Footer />
       </BrowserRouter>
-     <Toaster/>
+      <Toaster />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

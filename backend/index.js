@@ -2,12 +2,22 @@
 import router from './routes/routes.js'
 import cors from 'cors'
 import DBConnetion from './database/db.js'
+import dotenv from 'dotenv'
+import cookieParser from 'cookie-parser';
+
+
  const app = express()
+ dotenv.config()
+
  app.use(cors({
     origin: 'http://localhost:3000', 
     methods: ['GET', 'POST', 'PUT', 'DELETE'], 
     credentials: true, 
   }));
+  
+app.use(express.json())
+app.use(cookieParser());
+
 app.use('/', router)
 
 
