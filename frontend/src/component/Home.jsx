@@ -1,16 +1,22 @@
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { uploadFile } from '../services/api';
 import Wave from 'react-wavify';
 import toast from 'react-hot-toast';
 import '../App.css';
+import AuthContext from '../context/AuthContext';
 
 const Home = () => {
+  const { isAuthorized, user } = useContext(AuthContext)
   const [file, setFile] = useState("");
   const [result, setResult] = useState("");
 
   const fileRef = useRef();
 
   const onUploadClick = () => {
+    if (!user) {
+      toast.error('Please login or register before uploading');
+      return;
+    }
     fileRef.current.click();
   };
 
@@ -21,17 +27,19 @@ const Home = () => {
 
   useEffect(() => {
     const getImage = async () => {
-      if (file) {
+      if (file && user) {
         const data = new FormData();
         data.append("name", file.name);
         data.append("file", file);
-
+        data.append("userId", user._id);
         let response = await uploadFile(data);
+        console.log(response);
+        console.log(user);
         setResult(response.path);
       }
     };
     getImage();
-  }, [file]);
+  }, [file,user]);
 
   return (
     <>
@@ -39,7 +47,7 @@ const Home = () => {
         <div className="max-w-md w-full text-center md:text-left">
           <h2 className="text-4xl font-semibold text-gray-300">ShareLink</h2>
           <p className="text-xl text-gray-400 mb-4">File sharing application</p>
-
+          
           <button
             className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
             onClick={onUploadClick}
@@ -53,7 +61,7 @@ const Home = () => {
             onChange={(e) => setFile(e.target.files[0])}
           />
 
-          {result && (
+          {result && user &&  (
             <div className="mt-4 flex flex-col items-center md:flex-row">
               <a
                 href={result}
@@ -76,6 +84,7 @@ const Home = () => {
           <img src="/hero.jpg" alt="Hero" className="w-full rounded-lg" />
         </div>
       </div>
+
     
       <Wave
         fill="#21e909"

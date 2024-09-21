@@ -20,6 +20,12 @@ const signup = async (req, res) =>{
         const payload = { user: { id: user.id } };
 
         const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production', 
+            sameSite: 'strict',
+            maxAge: 3600000 
+          });
         res.json({user, token });
 
     } catch (error) {
@@ -44,7 +50,12 @@ const login = async (req, res, next) => {
 
         const payload = { user: { id: user.id } };
         const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
-
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production', 
+            sameSite: 'strict',
+            maxAge: 3600000 
+          });
 
         return res.json({ user, token });
     } catch (error) {

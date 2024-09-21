@@ -2,19 +2,25 @@ import mongoose from "mongoose";
 
 
 const fileSchema = new mongoose.Schema({
-    path:{
-        type:String,
+    path: {
+        type: String,
         required: true
     },
-    name:{
-        type:String,
+    name: {
+        type: String,
         required: true
     },
-    downloadContent:{
-        type:Number,
+    downloadContent: {
+        type: Number,
         required: true,
         default: 0
     },
+    userId:{
+         type: mongoose.Schema.Types.ObjectId,
+         ref: 'User',
+         required: true
+         }, 
+
 
 })
 

@@ -10,6 +10,7 @@ export const AuthProvider = ({children}) => {
 
   const login = (userData) => {
     setUser(userData);
+    console.log(userData);
     setIsAuthorized(true);
   };
 

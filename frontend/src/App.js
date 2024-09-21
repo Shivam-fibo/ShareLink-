@@ -9,6 +9,7 @@ import { Toaster } from 'react-hot-toast';
 import AuthContext from './context/AuthContext';
 
 import axios from 'axios'; 
+import Dashboard from './component/Dashboard';
 
 const App = () => {
   const { isAuthorized, setIsAuthorized, setUser } = useContext(AuthContext);  
@@ -40,6 +41,7 @@ const App = () => {
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
+          <Route path='/dashboard' element={<Dashboard/>} />
         </Routes>
         <Footer />
       </BrowserRouter>

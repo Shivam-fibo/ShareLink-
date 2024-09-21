@@ -8,22 +8,24 @@ const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
-
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
       const res = await axios.post('http://localhost:8000/signup', { name, email, password });
-      login(res.data.user); 
+      login(res.data.user);
       toast.success("Registration successful!!");
       navigate('/');
     } catch (err) {
-      setError(err.message);
-      toast.error("Something bad happened!!");
+      if (err.response && err.response.data && err.response.data.message === 'Email already in use') {
+        toast.error("Email is already in use!");
+      } else {
+        toast.error("Something bad happened!!");
+      }
     }
   };
+  
 
   return (
     <section className="mt-10">

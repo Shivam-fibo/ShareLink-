@@ -19,23 +19,24 @@ const Login = () => {
           'Content-Type': 'application/json',
         },
       });
+      console.log(res);
       login(res.data.user);
       toast.success('Login successful!!');
       navigate('/');
     } catch (err) {
       if (err.response) {
         if (err.response.status === 400) {
-          setError('Invalid email or password');
+        
           toast.error('Invalid email or password !!');
         } else if (err.response.data.msg) {
-          setError(err.response.data.msg);
+        
           toast.error(err.response.data.msg);
         } else {
-          setError('An unexpected error occurred');
+         
           toast.error('An unexpected error occurred');
         }
       } else {
-        setError('Server not reachable');
+       
         toast.error('Server not reachable');
       }
     }
@@ -53,7 +54,7 @@ const Login = () => {
             />
           </div>
 
-          <div className="mb-12 md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12">
+          <div className="mx-12 my-12 md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12">
             <form onSubmit={handleLogin}>
               {/* Email input */}
               <div className="mb-6">
@@ -65,7 +66,7 @@ const Login = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full  py-2 text-gray-700 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                  className="w-full px-2  py-2 text-gray-700 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
                 />
               </div>
 
@@ -79,7 +80,7 @@ const Login = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="w-full py-2 text-gray-700 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                  className="w-full px-2 py-2 text-gray-700 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
                 />
               </div>
 
