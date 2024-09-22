@@ -17,7 +17,7 @@ const signup = async (req, res) =>{
         const salt = await bcrypt.genSalt(10);
         user.password = await bcrypt.hash(password, salt)
       await  user.save();
-        const payload = { user: { id: user.id } };
+        const payload = { user: { id: user._id } };
 
         const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
         res.cookie('token', token, {
@@ -48,7 +48,7 @@ const login = async (req, res, next) => {
             return res.status(400).json({ msg: "Password is wrong" });
         }
 
-        const payload = { user: { id: user.id } };
+        const payload = { user: { id: user._id } };
         const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
         res.cookie('token', token, {
             httpOnly: true,

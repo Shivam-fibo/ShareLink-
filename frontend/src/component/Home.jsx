@@ -6,7 +6,7 @@ import '../App.css';
 import AuthContext from '../context/AuthContext';
 
 const Home = () => {
-  const { isAuthorized, user } = useContext(AuthContext)
+  const {  user } = useContext(AuthContext)
   const [file, setFile] = useState("");
   const [result, setResult] = useState("");
 

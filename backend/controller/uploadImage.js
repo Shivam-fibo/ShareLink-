@@ -31,9 +31,12 @@ export const downloadImage = async(request, response) =>{
 
 }
 export const getUserFiles = async (req, res) => {
+    if (!req.user || !req.user._id) {
+        return res.status(400).json({ message: 'User not found or unauthorized' });
+      }
     try {
         const userId = req.user._id; 
-
+        console.log(userId);
       
         const files = await File.find({ userId });
 
