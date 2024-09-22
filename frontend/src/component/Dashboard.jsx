@@ -31,7 +31,7 @@ const UserFiles = () => {
       <ul>
         {files.map((file) => (
           <li key={file._id}>
-            {file.name} - <a href={file.path}>Download</a>
+            {file.name} - <a href={file.path}>{file.path}</a>
           </li>
         ))}
       </ul>

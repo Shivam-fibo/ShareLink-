@@ -4,6 +4,7 @@ import cors from 'cors'
 import DBConnetion from './database/db.js'
 import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser';
+import morgan from 'morgan'
 
 
  const app = express()
@@ -17,7 +18,7 @@ import cookieParser from 'cookie-parser';
   
 app.use(express.json())
 app.use(cookieParser());
-
+app.use(morgan());
 app.use('/', router)
 
 

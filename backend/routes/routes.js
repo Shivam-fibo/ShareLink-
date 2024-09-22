@@ -9,7 +9,7 @@
 
     router.post('/upload', upload.single("file") , uploadImage);
     router.get('/file/:fileId', downloadImage);
-    router.get('/user/:id/files', getUserFiles);
+    router.get('/user/files', authMiddleware, getUserFiles);
     router.post('/signup', signup);
     router.post('/login', login)
     router.post('/logout',logout)

@@ -14,11 +14,16 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:8000/login', { email, password }, {
+      const res = await axios.post('http://localhost:8000/login', 
+      { email, password }, 
+      {
+        withCredentials: true,  
         headers: {
           'Content-Type': 'application/json',
         },
-      });
+      }
+    );
+    
       console.log(res);
       login(res.data.user);
       toast.success('Login successful!!');

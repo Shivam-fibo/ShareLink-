@@ -13,9 +13,18 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:8000/signup', { name, email, password });
-      login(res.data.user);
+      const res = await axios.post('http://localhost:8000/signup', 
+        { name, email, password }, 
+        {
+          withCredentials: true,  
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      login(res.data.user); 
       toast.success("Registration successful!!");
+      console.log(res.data.token);
       navigate('/');
     } catch (err) {
       if (err.response && err.response.data && err.response.data.message === 'Email already in use') {
