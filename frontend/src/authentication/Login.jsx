@@ -24,7 +24,7 @@ const Login = () => {
       }
     );
     
-      console.log(res);
+     
       login(res.data.user);
       toast.success('Login successful!!');
       navigate('/');

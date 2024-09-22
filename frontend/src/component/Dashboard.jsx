@@ -2,12 +2,13 @@ import React, { useEffect, useState, useContext } from 'react';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 import AuthContext from '../context/AuthContext';
-import ReactLoading from 'react-loading'; // Import the loading component
+import ReactLoading from 'react-loading';
 
-const UserFiles = () => {
+const Dashboard = () => {
   const [files, setFiles] = useState([]);
-  const [loading, setLoading] = useState(true); // Loading state
+  const [loading, setLoading] = useState(true); 
   const { user } = useContext(AuthContext);
+
 
   useEffect(() => {
     const fetchUserFiles = async () => {
@@ -20,33 +21,48 @@ const UserFiles = () => {
 
         const response = await axios.get('http://localhost:8000/user/files', { withCredentials: true });
         setFiles(response.data);
-        setLoading(false); // Stop loading when data is fetched
+        console.log(files)
+        setLoading(false); 
+     
       } catch (error) {
         console.error('Error fetching files:', error);
-        setLoading(false); // Stop loading on error
+        setLoading(false); 
       }
     };
 
     fetchUserFiles();
   }, [user]);
 
+
+
+
+
+
   return (
-    <div>
-      <h1>User Uploaded Files</h1>
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">{user.name} Uploaded Files</h1>
 
       {loading ? (
-        // Use react-loading spinner while loading
-        <ReactLoading type="spin" color="#0000ff" height={50} width={50} />
+      
+        <div className="flex justify-center items-center">
+          <ReactLoading type="balls" color="#1D4ED8" height={64} width={64} />
+        </div>
       ) : (
-        <ul>
+        
+        <ul className="bg-white rounded-lg shadow-md p-6 space-y-4">
+              <li className="flex justify-between items-center bg-gray-100 p-4 rounded-lg hover:bg-gray-200 transition">
+              <h3>File Name</h3>
+              <h3>Clicks</h3>
+            </li>
           {files.length > 0 ? (
-            files.map((file) => (
-              <li key={file._id}>
-                {file.name} - <a href={file.path}>{file.path}</a>
+            [...files].reverse().map((file) => (
+              <li key={file._id} className="flex justify-between items-center bg-gray-100 p-4 rounded-lg hover:bg-gray-200 transition">
+                <span className="text-gray-800 font-medium">{file.name}</span>
+                <button className="text-blue-500 hover:text-blue-700 transition">{file.downloadContent}</button>
               </li>
             ))
           ) : (
-            <p>No files found</p>
+            <p className="text-center text-gray-600">No files found</p>
           )}
         </ul>
       )}
@@ -54,4 +70,4 @@ const UserFiles = () => {
   );
 };
 
-export default UserFiles;
+export default Dashboard 

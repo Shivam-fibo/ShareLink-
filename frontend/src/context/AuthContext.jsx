@@ -11,13 +11,10 @@ export const AuthProvider = ({children}) => {
 
   const login = (userData) => {
     setUser(userData);
-    console.log(userData);
-    // console.log(user)
+
     setIsAuthorized(true);
   };
-  useEffect(() => {
-    console.log(user);  
-  }, [user]);
+
   const logout = async () => {
     try {
       await axios.post('http://localhost:8000/logout', {}, {

@@ -33,8 +33,7 @@ const Home = () => {
         data.append("file", file);
         data.append("userId", user._id);
         let response = await uploadFile(data);
-        console.log(response);
-        console.log(user);
+
         setResult(response.path);
       }
     };
