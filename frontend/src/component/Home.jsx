@@ -42,55 +42,55 @@ const Home = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center p-6 md:flex-row justify-between">
-        <div className="max-w-md w-full text-center md:text-left">
-          <h2 className="text-4xl font-semibold text-gray-300">ShareLink</h2>
-          <p className="text-xl text-gray-400 mb-4">File sharing application</p>
-          
-          <button
-            className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
-            onClick={onUploadClick}
-          >
-            Upload
-          </button>
-          <input
-            type="file"
-            ref={fileRef}
-            style={{ display: "none" }}
-            onChange={(e) => setFile(e.target.files[0])}
-          />
+    <div className="flex flex-col items-center justify-between h-screen bg-green-100 overflow-hidden md:flex-row">
+      {/* Left Section */}
+      <div className="w-full max-w-md  ml-12 text-center md:text-left">
+      <h2 className="text-7xl font-bold text-blue-700">ShareLink</h2>
+        <p className="text-2xl text-black mb-4">
+          Seamlessly share your files with others. <br />
+          Upload any file and get a unique shareable link instantly. <br />
+        </p>
 
-          {result && user &&  (
-            <div className="mt-4 flex flex-col items-center md:flex-row">
-              <a
-                href={result}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-500 hover:underline"
-              >
-                {result}
-              </a>
-              <button
-                className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mt-2 md:mt-0 md:ml-4"
-                onClick={handleCopy}
-              >
-                Copy
-              </button>
-            </div>
-          )}
-        </div>
-        <div className="mt-6 md:mt-0">
-          <img src="/hero.jpg" alt="Hero" className="w-full rounded-lg" />
-        </div>
+        <button
+          className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+          onClick={onUploadClick}
+        >
+          Upload
+        </button>
+        <input
+          type="file"
+          ref={fileRef}
+          style={{ display: "none" }}
+          onChange={(e) => setFile(e.target.files[0])}
+        />
+  
+        {result && user && (
+          <div className="mt-4 flex flex-col items-center md:flex-row">
+            <a
+              href={result}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 hover:underline"
+            >
+              {result}
+            </a>
+            <button
+              className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mt-2 md:mt-0 md:ml-4"
+              onClick={handleCopy}
+            >
+              Copy
+            </button>
+          </div>
+        )}
       </div>
-
-    
-      <Wave
-        fill="#21e909"
-        paused={false}
-        options={{ height: 16, amplitude: 25, speed: 0.15, points: 10 }}
-      />
-    </>
+  
+      {/* Right Section: Hero Image */}
+      <div className="w-full mt-6 md:mt-0 md:w-1/2">
+        <img src="/hero.png" alt="Hero" className="w-full max-w-lg mx-auto rounded-lg" />
+      </div>
+    </div>
+  </>
+  
   );
 };
 
