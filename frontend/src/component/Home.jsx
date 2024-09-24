@@ -34,7 +34,8 @@ const Home = () => {
         data.append("userId", user._id);
         let response = await uploadFile(data);
         console.log(response)
-        setResult(response);
+        setResult(response)
+        // setResult(response);
       }
     };
     getImage();

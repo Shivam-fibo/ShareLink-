@@ -1,18 +1,22 @@
-import  File from '../models/file.js'
+import File from '../models/file.js';
 import multer from 'multer';
 import cloudinary from 'cloudinary';
 import { CloudinaryStorage } from 'multer-storage-cloudinary';
+import dotenv from 'dotenv';
+dotenv.config(); 
 
 // Set up Cloudinary
-cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET
+
+  
+cloudinary.v2.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_API,
+  api_secret: process.env.CLOUDINARY_SECRET
 });
 
 // Set up Multer to use Cloudinary Storage
 const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
+  cloudinary: cloudinary.v2, // Ensure cloudinary.v2 is used
   params: {
     folder: 'uploads'
   },
@@ -28,22 +32,28 @@ export const uploadImage = async (req, res) => {
   }
 
   try {
+    // Upload file to Cloudinary and wait for result
+    const result = await cloudinary.v2.uploader.upload(req.file.path, {
+      resource_type: 'auto', // Handle all file types (image, video, etc.)
+    });
+
     const fileObj = {
-      path: req.file.path,
+      path: result.secure_url, 
       name: req.file.originalname,
       fileUrl: result.secure_url,
       userId,
     };
     
-    // If you want to save it in DB, otherwise remove this
+
     const file = await File.create(fileObj);
 
-    res.status(200).json({  fileUrl: result.secure_url });
+    res.status(200).json({ fileUrl: result.secure_url });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: error.message });
   }
 };
+
 
 export const downloadImage = async(request, response) =>{
     try {
